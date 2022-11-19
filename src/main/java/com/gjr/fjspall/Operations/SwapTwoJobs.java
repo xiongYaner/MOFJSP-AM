@@ -4,12 +4,12 @@ package com.gjr.fjspall.Operations;
 import com.gjr.fjspall.Utils.BaseMethod;
 import com.gjr.fjspall.Utils.InstancesReader;
 import com.gjr.fjspall.normativeDesign.OperationForOS;
-import lombok.Setter;
+
 
 import java.util.ArrayList;
 import java.util.Random;
 
-@Setter
+
 public class SwapTwoJobs implements OperationForOS {
     double probability = 1;
 
@@ -187,5 +187,11 @@ public class SwapTwoJobs implements OperationForOS {
         return newOS;
     }
 
+    public double getProbability() {
+        return probability;
+    }
 
+    public void setProbability(double probability) {
+        this.probability = probability;
+    }
 }

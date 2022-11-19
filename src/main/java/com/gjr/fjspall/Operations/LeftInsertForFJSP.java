@@ -3,12 +3,12 @@ package com.gjr.fjspall.Operations;
 import com.gjr.fjspall.Utils.BaseMethod;
 import com.gjr.fjspall.Utils.InstancesReader;
 import com.gjr.fjspall.normativeDesign.OperationForDecode;
-import lombok.Getter;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Getter
+
 public class LeftInsertForFJSP implements OperationForDecode {
     @Override
     public void decode(int[][] OS, int[][] MS, int[][][] T) {
@@ -366,6 +366,44 @@ public class LeftInsertForFJSP implements OperationForDecode {
         makespanOne = BaseMethod.maxTwo(endSequenceOne);
     }
 
+    public int[][][] getJobSequence() {
+        return jobSequence;
+    }
 
+    public int[][][] getProcessSequence() {
+        return processSequence;
+    }
+
+    public int[][][] getStartSequence() {
+        return startSequence;
+    }
+
+    public int[][][] getEndSequence() {
+        return endSequence;
+    }
+
+    public int[] getMakespan() {
+        return makespan;
+    }
+
+    public int[][] getJobSequenceOne() {
+        return jobSequenceOne;
+    }
+
+    public int[][] getProcessSequenceOne() {
+        return processSequenceOne;
+    }
+
+    public int[][] getStartSequenceOne() {
+        return startSequenceOne;
+    }
+
+    public int[][] getEndSequenceOne() {
+        return endSequenceOne;
+    }
+
+    public int getMakespanOne() {
+        return makespanOne;
+    }
 }
 

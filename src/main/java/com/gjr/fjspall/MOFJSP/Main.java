@@ -30,7 +30,9 @@ public class Main {
     }
 
     public void run() {
-        new InstancesReader().txt2String(new File(System.getProperty("user.dir") + "/src/main/resources/Data/FJSP/" + instance + ".txt"));
+        //String path=System.getProperty("user.dir") + "/src/main/resources/Data/FJSP/" + instance + ".txt";
+        String path="/code/target/classes/Data/FJSP/Ge12-5.txt";
+        new InstancesReader().txt2String(new File(path));
         InitialForFJSPOfLoad initial = new InitialForFJSPOfLoad(Parameter.populationSize);
         LeftInsertForFJSP decode = new LeftInsertForFJSP();
         SwapTwoJobs swapTwoJobs = new SwapTwoJobs();

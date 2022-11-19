@@ -2,11 +2,10 @@ package com.gjr.fjspall.Operations;
 
 import com.gjr.fjspall.Utils.BaseMethod;
 import com.gjr.fjspall.normativeDesign.OperationForSelection;
-import lombok.Getter;
+
 
 import java.util.Random;
 
-@Getter
 public class OOSelection implements OperationForSelection {
     int[][] newMS;
     int[][] newOS;
@@ -53,4 +52,35 @@ public class OOSelection implements OperationForSelection {
 
     }
 
+    public int[][] getNewMS() {
+        return newMS;
+    }
+
+    public void setNewMS(int[][] newMS) {
+        this.newMS = newMS;
+    }
+
+    public int[][] getNewOS() {
+        return newOS;
+    }
+
+    public void setNewOS(int[][] newOS) {
+        this.newOS = newOS;
+    }
+
+    public int[][] getNewT() {
+        return newT;
+    }
+
+    public void setNewT(int[][] newT) {
+        this.newT = newT;
+    }
+
+    public int[] getNewFit() {
+        return newFit;
+    }
+
+    public void setNewFit(int[] newFit) {
+        this.newFit = newFit;
+    }
 }

@@ -3,14 +3,12 @@ package com.gjr.fjspall.Operations;
 import com.gjr.fjspall.Utils.BaseMethod;
 import com.gjr.fjspall.Utils.InstancesReader;
 import com.gjr.fjspall.normativeDesign.OperationForInitial;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.util.Arrays;
 import java.util.Random;
 
-@Getter
-@Setter
+
 public class InitialForFJSPOfLoad implements OperationForInitial {
     int pop;
     double[] initializationProportionMultipleObjects = {0.3, 0.2, 0.1, 0.1, 0.2};
@@ -184,4 +182,83 @@ public class InitialForFJSPOfLoad implements OperationForInitial {
     }
 
 
+    public int getPop() {
+        return pop;
+    }
+
+    public void setPop(int pop) {
+        this.pop = pop;
+    }
+
+    public double[] getInitializationProportionMultipleObjects() {
+        return initializationProportionMultipleObjects;
+    }
+
+    public void setInitializationProportionMultipleObjects(double[] initializationProportionMultipleObjects) {
+        this.initializationProportionMultipleObjects = initializationProportionMultipleObjects;
+    }
+
+    public int[][] getOS() {
+        return OS;
+    }
+
+    public void setOS(int[][] OS) {
+        this.OS = OS;
+    }
+
+    public int[][] getT() {
+        return T;
+    }
+
+    public void setT(int[][] t) {
+        T = t;
+    }
+
+    public int[][] getMS() {
+        return MS;
+    }
+
+    public void setMS(int[][] MS) {
+        this.MS = MS;
+    }
+
+    public int getJobNum() {
+        return jobNum;
+    }
+
+    public void setJobNum(int jobNum) {
+        this.jobNum = jobNum;
+    }
+
+    public int getMachineNum() {
+        return machineNum;
+    }
+
+    public void setMachineNum(int machineNum) {
+        this.machineNum = machineNum;
+    }
+
+    public int[][][] getProcess() {
+        return process;
+    }
+
+    public void setProcess(int[][][] process) {
+        this.process = process;
+    }
+
+    public int[][][] getTime() {
+        return time;
+    }
+
+    public void setTime(int[][][] time) {
+        this.time = time;
+    }
+
+    public int[] getEveryProcessNum() {
+        return everyProcessNum;
+    }
+
+    public void setEveryProcessNum(int[] everyProcessNum) {
+        this.everyProcessNum = everyProcessNum;
+    }
 }
