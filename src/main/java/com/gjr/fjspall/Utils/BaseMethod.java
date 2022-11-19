@@ -91,7 +91,7 @@ public class BaseMethod {
         Random random = new Random();
         int n = random.nextInt(kthElements.size());
         for (int i = 0; i < array.length; i++) {
-            if (array[i]==kthElements.get(n)){
+            if (array[i] == kthElements.get(n)) {
                 return i;
             }
         }
@@ -271,6 +271,30 @@ public class BaseMethod {
         return -1;
     }
 
+
+    public static double average(double[] x) {
+        int n = x.length;
+        double sum = 0;
+        for (double i : x) {
+            sum += i;
+        }
+        return sum / n;
+    }
+
+    public static double variance(double[] x) {
+        int n = x.length;
+        double avg = average(x);
+        double var = 0;
+        for (double i : x) {
+            var += (i - avg) * (i - avg);
+        }
+        return var / n;
+    }
+
+
+    public static double standardDiviation(double[] x) {
+        return Math.sqrt(variance(x));
+    }
 
 }
 

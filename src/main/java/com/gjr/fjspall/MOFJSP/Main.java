@@ -2,16 +2,20 @@ package com.gjr.fjspall.MOFJSP;
 
 import com.gjr.fjspall.Operations.*;
 import com.gjr.fjspall.Operations.ResetForFJSP;
+import com.gjr.fjspall.Utils.BaseMethod;
 import com.gjr.fjspall.Utils.FindTWithMS;
 import com.gjr.fjspall.Utils.InstancesReader;
 
 import java.io.File;
+import java.util.Arrays;
 
 
 public class Main {
     String instance = "Ge12-5";
     int maxThreshold = 2 * (InstancesReader.jobNum + InstancesReader.machineNum);
-
+    String[] handleInstance = {"Ge12-5", "Ge15-8", "Ge20-10", "Ge40-8", "Ge50-15",
+            "Ge80-5", "Ge100-8", "Ge150-15", "Ge200-10", "Ge300-20",
+            "mk01", "mk03", "mk03", "mk04", "mk05", "mk06", "mk07", "mk08", "mk09", "mk10",};
     long runtime = 0;
 
     public Main() {
@@ -29,10 +33,32 @@ public class Main {
         return runtime;
     }
 
-    public void run() {
+    public void runMore() {
+        for (String s : handleInstance) {
+            System.out.println("-------------------------------------------------------");
+            run(s);
+            System.out.println("-------------------------------------------------------");
+        }
+    }
+
+    public void run(String input) {
         //String path=System.getProperty("user.dir") + "/src/main/resources/Data/FJSP/" + instance + ".txt";
-        String path="/code/target/classes/Data/FJSP/Ge12-5.txt";
+       // String path = "E:\\desktop\\MOFJSP-AM\\src\\main\\resources\\Data\\FJSP\\" + input + ".txt";
+        if (input.startsWith("Ge")) {
+            System.out.println("Start running the aerospace manufacturing instance, scale=" + input.replace("GE", ""));
+        } else {
+            System.out.println("Start running the standard example, name=" + input);
+        }
+        String path="../data/" + input + ".txt";
         new InstancesReader().txt2String(new File(path));
+        compareDecodeMethod(input);
+        if (input.startsWith("mk")) {
+            Parameter.populationSize = 10 * InstancesReader.jobNum * InstancesReader.machineNum;
+            Parameter.maxCycleIndex = 6 * InstancesReader.jobNum * InstancesReader.machineNum;
+        }else {
+            Parameter.populationSize = 5 * InstancesReader.jobNum * InstancesReader.machineNum;
+            Parameter.maxCycleIndex = 3 * InstancesReader.jobNum * InstancesReader.machineNum;
+        }
         InitialForFJSPOfLoad initial = new InitialForFJSPOfLoad(Parameter.populationSize);
         LeftInsertForFJSP decode = new LeftInsertForFJSP();
         SwapTwoJobs swapTwoJobs = new SwapTwoJobs();
@@ -148,8 +174,35 @@ public class Main {
                     threshold[j] = 0;
                 }
             }
-
         }
+        System.out.println("Now let's output the solution set of the example for"+ input);
         System.out.println(AS);
+    }
+
+    public void compareDecodeMethod(String input) {
+        System.out.println("Now, start comparing the results of greedy decoding with those of normal decoding,instance is "+input);
+        InitialForFJSPOfLoad initial = new InitialForFJSPOfLoad(1000);
+        initial.initializationOSRandom();
+        initial.initializationMSRandom();
+        int[][] OS = initial.getOS();
+        int[][] MS = initial.getMS();
+        int[][] T = FindTWithMS.correspondingT(MS);
+        LeftInsertForFJSP decode = new LeftInsertForFJSP();
+        decode.decode(OS, MS, T);
+        double[] ms1 = Arrays.stream(decode.getMakespan()).mapToDouble(Double::valueOf).toArray();
+        double average1 = BaseMethod.average(ms1);
+        OrdinaryDecodeForFJSP normal = new OrdinaryDecodeForFJSP();
+        normal.decode(OS, MS, T);
+        double[] ms2 = Arrays.stream(normal.getMakespan()).mapToDouble(Double::valueOf).toArray();
+        double average2 = BaseMethod.average(ms2);
+        String result = "Greed Decoding: Average=" + average1  + "\n"
+                + "Ordinary Decoding: Average=" + average2  + "\n";
+        if (average1<=average2){
+            result=result+"the better decode method is Greed Decoding";
+        }else {
+            result=result+"the better decode method is Ordinary Decoding";
+        }
+        System.out.println(result);
+
     }
 }

@@ -181,7 +181,21 @@ public class InitialForFJSPOfLoad implements OperationForInitial {
         }
     }
 
-
+    public void initializationMSRandom() {
+        MS = new int[pop][InstancesReader.allProcess];
+        T = new int[pop][InstancesReader.allProcess];
+        for (int i = 0; i < pop; i++) {
+            int count = 0;
+            for (int k1 = 0; k1 < jobNum; k1++) {
+                for (int k2 = 0; k2 < everyProcessNum[k1]; k2++) {
+                    int temp = new Random().nextInt(process[k1][k2].length);
+                    MS[i][count] = process[k1][k2][temp];
+                    T[i][count] = time[k1][k2][temp];
+                    count++;
+                }
+            }
+        }
+    }
     public int getPop() {
         return pop;
     }

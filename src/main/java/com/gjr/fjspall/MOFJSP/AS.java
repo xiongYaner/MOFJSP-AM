@@ -63,9 +63,9 @@ public class AS {
 
     @Override
     public String toString() {
-        return "ms=" + ms +
-                ", wt=" + wt +
-                ", wm=" + wm +
-                '}';
+        return "makespan=" + ms +
+                ", Total machine load=" + wt +
+                ", Maximum machine load=" + wm
+                ;
     }
 }
